@@ -1,4 +1,4 @@
-# Compiler files
+#Compiler files
 cache/
 out/
 
@@ -19,4 +19,7 @@ docs/
 .env.*
 !.env.example
 
+.DS_Store
+zkout/
+lib/
 windows_local_setup.md
