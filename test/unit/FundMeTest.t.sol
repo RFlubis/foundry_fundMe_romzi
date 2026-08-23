@@ -83,10 +83,7 @@ contract FundMeTest is Test {
         uint256 endingOwnerBalance = fundMe.getOwner().balance;
         uint256 endingFundMeBalance = address(fundMe).balance;
         assertEq(endingFundMeBalance, 0);
-        assertEq(
-            startingFundMeBalance + startingOwnerBalance,
-            endingOwnerBalance
-        );
+        assertEq(startingFundMeBalance + startingOwnerBalance, endingOwnerBalance);
     }
 
     function testWithdrawFromMultipleFunders() public funded {
@@ -94,11 +91,7 @@ contract FundMeTest is Test {
         uint160 numberOfFunders = 10;
         uint160 startingFunderIndex = 1;
 
-        for (
-            uint160 i = startingFunderIndex;
-            i < numberOfFunders + startingFunderIndex;
-            i++
-        ) {
+        for (uint160 i = startingFunderIndex; i < numberOfFunders + startingFunderIndex; i++) {
             //hoax is a combination of vm.prank and vm.deal, it sets the msg.sender to the address and also sets the balance of the address to the value, so that we can use the address to fund the contract without running out of ether
             hoax(address(i), SEND_VALUE);
             fundMe.fund{value: SEND_VALUE}();
@@ -128,7 +121,6 @@ contract FundMeTest is Test {
             startingFundMeBalance + startingOwnerBalance,
             endingOwnerBalance //+ gasCost
         );
-        
     }
 
     function testWithdrawFromMultipleFundersCheaper() public funded {
@@ -136,11 +128,7 @@ contract FundMeTest is Test {
         uint160 numberOfFunders = 10;
         uint160 startingFunderIndex = 1;
 
-        for (
-            uint160 i = startingFunderIndex;
-            i < numberOfFunders + startingFunderIndex;
-            i++
-        ) {
+        for (uint160 i = startingFunderIndex; i < numberOfFunders + startingFunderIndex; i++) {
             //hoax is a combination of vm.prank and vm.deal, it sets the msg.sender to the address and also sets the balance of the address to the value, so that we can use the address to fund the contract without running out of ether
             hoax(address(i), SEND_VALUE);
             fundMe.fund{value: SEND_VALUE}();
